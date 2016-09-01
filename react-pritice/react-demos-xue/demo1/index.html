@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<div id="example2"></div>
+<div id="example3"></div>
+<div id="example4"></div>
+<div id="example5"></div>
+
+<script type="text/babel">
+    ReactDOM.render(
+            <h1>Hello, world!</h1>,
+            document.getElementById('example')
+    );
+    let names = ['asss', 'cdcdcd', 'deeeeeeeeeeeeed'];
+
+    //example 2
+    ReactDOM.render(<div>
+                {
+                    names.map(function (name) {
+                        return <h1> {name}</h1>
+                    })
+                }
+            </div>,
+            document.getElementById("example2"));
+
+    // example3
+    let Message = React.createClass(
+            {
+                render: function () {
+                    return <h1>{this.props.name}</h1>;
+                }
+            }
+    );
+    ReactDOM.render(<Message name="hello"/>, document.getElementById("example3"));
+    // example4
+    var NotesList = React.createClass({
+        render: function () {
+            return (
+                    <ol>
+                        {
+                            React.Children.map(this.props.children, function (child) {
+                                return <li>{child}</li>;
+                            })
+                        }
+                    </ol>
+            );
+        }
+    });
+
+    ReactDOM.render(
+            <NotesList>
+                <span>hello</span>
+                <span>world</span>
+            </NotesList>,
+            document.getElementById('example4')
+    );
+
+    // example5
+
+    var data = '123';
+
+    var MyTitle = React.createClass({
+        propTypes: {
+            title: React.PropTypes.string.isRequired,
+        },
+
+        render: function () {
+            return <h1> {this.props.title} </h1>;
+        }
+    });
+
+    ReactDOM.render(
+            <MyTitle title={data}/>,
+            document.getElementById('example5')
+    );
+
+</script>
+</body>
+</html>
